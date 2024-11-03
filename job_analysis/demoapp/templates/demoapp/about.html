@@ -1,0 +1,64 @@
+{%  extends 'demoapp/home.html' %}
+{% load static %}
+{% block extra_js %}
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+{% endblock %}
+
+
+{% block content %}
+
+
+<div class="container my-5 py-5">
+    <div class="row">
+        <div class="col-md-2">
+            {%  include 'demoapp/button.html' %}
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-10 col-lg-8">
+        <div class="card shadow-sm border-0">
+            <div class="card-body p-4">
+            <h2 class="card-title text-center mb-4" style="font-family: 'Roboto', sans-serif;">👋 About This Project</h2>
+            <p class="card-text lead" style="font-size: 1.1rem;">
+                Welcome to my <strong>Job Analysis Project</strong>, a personal exploration of data analysis using LinkedIn job postings data! 📊 I started this project to sharpen my data analysis and visualization skills while getting hands-on experience with real-world data. The dataset I used, which is from Kaggle's <em>LinkedIn Job Postings for 2024</em>, allowed me to explore trends, uncover patterns, and gain valuable insights into the job market. 💼🌍
+            </p>
+            <p class="card-text lead" style="font-size: 1.1rem;">
+            This project displays data from a sample of fewer than 200 rows, due to hosting restrictions on PythonAnywhere. To explore the original visualization, which included over 36,000 rows in each table, please visit the GitHub Repo below.
+            </p>
+            <h4 class="mt-4 mb-3" style="font-family: 'Roboto', sans-serif;">🛠️ Project Journey</h4>
+            <p class="card-text">
+                I initially built and analyzed this project in <strong>Jupyter Notebook</strong>, using tools like <strong>Pandas</strong>, <strong>NumPy</strong>, <strong>Matplotlib</strong>, <strong>Seaborn</strong>, <strong>Dash</strong>, and <strong>Plotly</strong> to clean, analyze, and visualize the data. I later recreated the entire project in <strong>Django</strong> to take it to the next level by making it accessible as an interactive web app. My backend skills came in handy here, especially as I wanted a seamless way to display visualizations, results, and findings. 🌐🚀
+            </p>
+            <p class="card-text">
+                This project is fully my own work, though I leveraged AI tools like ChatGPT, which helped me understand everything in detail—from brainstorming ideas to troubleshooting code and implementing complex concepts. 
+            </p>
+
+           
+            <h4 class="mt-4 mb-3" style="font-family: 'Roboto', sans-serif;">🔍 Problem Statements and Insights</h4>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">📅 <strong>Trends Over Time</strong>: I explored how job postings vary over months and seasons, revealing peak hiring times.</li>
+                <li class="list-group-item">🏢 <strong>Company Growth</strong>: Identified companies with the most postings.</li>
+                <li class="list-group-item">💵 <strong>Salary Comparisons</strong>: Compared average salaries across industries to see where the top-paying roles are.</li>
+                <li class="list-group-item">📍 <strong>Geographical Trends</strong>: Found the top cities for job seekers and the most lucrative locations!</li>
+                <li class="list-group-item">⚖️ <strong>Company Size vs. Job Offerings</strong>: Checked if larger companies post more jobs and how size affects hiring trends.</li>
+                <li class="list-group-item">📈 <strong>Industry Performance</strong>: Analyzed top industries in terms of job postings and salary offerings.</li>
+                <li class="list-group-item">👥 <strong>Employee Count vs. Job Postings</strong>: Explored the link between company size and hiring activity.</li>
+                <li class="list-group-item">🌟 <strong>Follower Count Analysis</strong>: Examined if more popular companies post more jobs or offer higher salaries.</li>
+                <li class="list-group-item">✏️ <strong>Description Length and Applications</strong>: Investigated if job description length affects applications.</li>
+                <li class="list-group-item">📌 <strong>Work Type Preferences</strong>: Looked into preferences for full-time, part-time, and remote jobs.</li>
+                <li class="list-group-item">👀 <strong>Views vs. Applications</strong>: Examined which jobs have the highest conversion rates and what makes them stand out.</li>
+                <li class="list-group-item">⏰ <strong>Expiry of Job Postings</strong>: Analyzed how quickly roles are filled and which ones are most competitive.</li>
+            </ul>
+    
+            <h4 class="mt-4 mb-3 text-center" style="font-family: 'Roboto', sans-serif;">🔗 Project Links</h4>
+            <div class="text-center">
+                <a href="https://github.com/AbhiramiTS/job-listing-analysis" class="btn btn-primary me-2 mb-2" target="_blank" style="font-size: 1rem;">View Jupyter Notebook</a>
+                <a href="https://github.com/AbhiramiTS/job_analysis_App" class="btn btn-secondary mb-2" target="_blank" style="font-size: 1rem;">View Django App Repo</a>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
+    
+{% endblock %}

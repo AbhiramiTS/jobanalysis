@@ -1,0 +1,33 @@
+{%  extends 'demoapp/home.html' %}
+{% load static %}
+{% block extra_js %}
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+{% endblock %}
+
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-2" style="padding: 2%;">
+        {%  include 'demoapp/button.html' %}
+    </div>
+    <br>
+    <br>
+</div>
+<div style="padding: 2%;">
+    <h5>Correlation between Job Description Length and Applications</h5>
+</div>
+    <p>Correlation: {{ correlation }}</p>
+    <img src="data:image/png;base64,{{ plot_desc_length_url }}" alt="Applications by Job Description Length Category">
+
+    <div style="padding: 2%;">
+        <h5>Distribution of Job Types in the Market</h5>
+    </div>
+    <img src="data:image/png;base64,{{ plot_job_type_url }}" alt="Job Type Distribution">
+        <h5>Job Type Counts:</h5>
+    <ul>
+        {% for job_type, count in job_type_counts.items %}
+            <li>{{ job_type }}: {{ count }}</li>
+        {% endfor %}
+    </ul>
+    {% endblock %}

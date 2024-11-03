@@ -1,0 +1,140 @@
+{%  extends 'demoapp/home.html' %}
+{% load static %}
+{% block extra_js %}
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+{% endblock %}
+
+
+{% block content %}
+
+{% comment %} {%  include 'accounts/status.html' %} {% endcomment %}
+
+<br>
+
+<br>
+<div class="alert alert-info" role="alert" style="margin-bottom: 20px;">
+    <strong>Note:</strong> This dashboard displays data from a sample of fewer than 200 rows, due to hosting restrictions on PythonAnywhere.
+    To explore the original visualization, which included over 36,000 rows in each table, please visit the 
+    <a href="https://github.com/AbhiramiTS/job_analysis_App" target="_blank" class="alert-link">GitHub repository</a>.
+</div>
+
+
+<div class="row">
+	<div class="col-md-7">
+		<h5>Top Companies with Highest Job Openings:</h5>
+		<hr>
+		<div class="card card-body">
+			{%  include 'demoapp/top_companies.html' %}
+		</div>
+	</div>
+
+	<div class="col-md-5"> 
+		<h5>Top 10 Highest Paying Industries:</h5>
+		<hr>
+		<div class="card card-body">
+			<img src="{% static '/images/top_industries_salary_chart.png' %}" alt="Top 10 Industries Pie Chart" class="img-fluid">
+		</div>
+    </div>
+	<br>
+	<br>
+</div>
+
+<br>
+
+<div class="row">
+	<div class="col-md-8">
+		<h5>Top 10 Locations by Max Salary or Job Count</h5>
+		<hr>
+		<div class="card card-body">
+			<div>
+				{{ plot_div|safe }}
+			</div>
+		</div>
+	</div>
+	
+	<div class="col-md-4" style="width: 100%; padding-top: 20px;"> <!-- Added padding above the table -->
+		<br>
+		<br>
+		<table class="table table-sm" style="width: 100%;">
+			<tr>
+				<th></th>
+
+			</tr>
+			<tr>
+				<td style="padding: 0;">
+					<a class="btn btn-sm btn-info hover-info" 
+					   href="{% url 'about' %}" 
+					   style="font-family: sans-serif; display: block; width: 100%; font-size: x-large; text-align: center; margin: 0; padding: 15px; font-weight: bold;  color: #453b3b; background-color: #f8f9fa; "> <!-- Added padding and styles -->
+					   Overview
+					</a>
+				</td>
+			</tr>
+
+			
+			<tr>
+				<td style="padding: 0;">
+					<a class="btn btn-sm btn-info" 
+					   href="{% url 'company_characteristics' %}"
+					   style="font-family: sans-serif; display: block; width: 100%; font-size: x-large; text-align: center; margin: 0; padding: 15px; font-weight: bold;  color: #453b3b; background-color: #f8f9fa;"> <!-- Added padding and styles -->
+					   Company Characteristics
+					</a>
+				</td>
+			</tr>
+			<tr>
+				<td style="padding: 0;">
+					<a class="btn btn-sm btn-info" 
+					   href="{% url 'job_analysis' %}" 
+					   style="font-family: sans-serif; display: block; width: 100%; font-size: x-large; text-align: center; margin: 0; padding: 15px; font-weight: bold;  color: #453b3b; background-color: #f8f9fa;"> <!-- Added padding and styles -->
+					   Job Posting Characteristics
+					</a>
+				</td>
+			</tr>
+			<tr>
+				<td style="padding: 0;">
+					<a class="btn btn-sm btn-info" 
+					   href="{% url 'job_posting_efficacy' %}" 
+					   style="font-family: sans-serif; display: block; width: 100%; font-size: x-large; text-align: center; margin: 0; padding: 15px; font-weight: bold;  color: #453b3b; background-color: #f8f9fa;"> <!-- Added padding and styles -->
+					   Job Posting Efficacy
+					</a>
+				</td>
+			</tr>
+		</table>
+		<br>
+=
+		<h4 class="mt-4 mb-3 text-center" style="font-family: 'Roboto', sans-serif;">🔗 Project Links</h4>
+            <div class="text-center">
+                <a href="https://github.com/AbhiramiTS/job-listing-analysis" class="btn btn-primary me-2 mb-2" target="_blank" style="font-size: 1rem;">View Jupyter Notebook Repo</a>
+            </div>
+			<div class="text-center">
+				<a href="https://github.com/AbhiramiTS/job_analysis_App" class="btn btn-secondary mb-2" target="_blank" style="font-size: 1rem;">View Django App Repo</a>
+			</div>
+        </div>
+		
+	</div>
+	
+	
+    
+	
+</div>
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+<script>
+    function renderChart(graphData) {
+        var chartDiv = document.getElementById('chart');
+        Plotly.newPlot(chartDiv, graphData.data, graphData.layout);
+    }
+
+    function updatePlot(numCompanies) {
+        fetch(`/plot-top-companies/${numCompanies}/`)
+            .then(response => response.json())
+            .then(data => renderChart(JSON.parse(data)));
+    }
+
+    // Initial Plot
+    document.addEventListener("DOMContentLoaded", function() {
+        updatePlot(50);  // Initial load with 50 companies
+    });
+</script>
+
+{% endblock %}

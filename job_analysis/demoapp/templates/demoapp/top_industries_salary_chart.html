@@ -1,0 +1,15 @@
+{%  extends 'demoapp/home.html' %}
+{% load static %}
+{% block extra_js %}
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+{% endblock %}
+
+
+{% block content %}
+    <h1>Top 10 Highest Paying Industries by Average Salary</h1>
+    {% if chart_image %}
+        <img src="data:image/png;base64,{{ chart_image }}" alt="Top 10 Industries Pie Chart">
+    {% else %}
+        <p>No data available.</p>
+    {% endif %}
+{% endblock %}

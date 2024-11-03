@@ -1,0 +1,42 @@
+{%  extends 'demoapp/home.html' %}
+{% load static %}
+{% block extra_js %}
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+{% endblock %}
+
+
+{% block content %}
+<div class="row">
+    <div class="col-md-2" style="padding: 2%;">
+        {%  include 'demoapp/button.html' %}
+    </div>
+    <br>
+    <br>
+</div>
+<div style="padding: 2%;">
+</div>
+    <div>
+        <label for="numCompanies">Number of Companies:</label>
+        <input type="range" id="numCompaniesSlider" name="numCompanies" min="10" max="100" step="10" value="50" oninput="updatePlot(this.value)">
+    </div>
+    <div id="chart"></div>
+
+    <script>
+        function renderChart(graphData) {
+            var chartDiv = document.getElementById('chart');
+            Plotly.newPlot(chartDiv, graphData.data, graphData.layout);
+        }
+    
+        function updatePlot(numCompanies) {
+            fetch(`/plot-top-companies/${numCompanies}/`)
+                .then(response => response.json())
+                .then(data => renderChart(JSON.parse(data)));
+        }
+    
+        // Initial Plot
+        document.addEventListener("DOMContentLoaded", function() {
+            updatePlot(50);  // Initial load with 50 companies
+        });
+    </script>
+    
+{% endblock %}

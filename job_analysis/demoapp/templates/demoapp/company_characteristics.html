@@ -1,0 +1,27 @@
+{%  extends 'demoapp/home.html' %}
+{% load static %}
+{% block extra_js %}
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+{% endblock %}
+
+{%  include 'demoapp/button.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-2" style="padding: 2%;">
+        {%  include 'demoapp/button.html' %}
+    </div>
+    <br>
+    <br>
+</div>
+<div style="padding: 2%;">
+    <h5>Job Postings vs Employee Count by Company Size</h5>
+</div>
+    
+    <div>{{ scatter_plot|safe }}</div>
+
+    <div style="padding: 2%;">
+        <h5>Follower Count vs Job Posting Count</h5>
+    </div>
+    <img src="{{ regression_plot }}" alt="Follower Count vs Job Posting Count">
+{% endblock %}

@@ -1,0 +1,22 @@
+{%  extends 'demoapp/home.html' %}
+{% load static %}
+{% block extra_js %}
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+{% endblock %}
+
+
+{% block content %}
+<div class="row">
+    <div class="col-md-2" style="padding: 2%;">
+        {%  include 'demoapp/button.html' %}
+    </div>
+    <br>
+    <br>
+</div>
+<div style="padding: 2%;">
+    <h5>Top 10 Locations by Max Salary or Job Count</h5>
+</div>
+    <div>
+        {{ plot_div|safe }}
+    </div>
+{% endblock %}

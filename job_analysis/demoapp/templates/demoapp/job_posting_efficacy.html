@@ -1,0 +1,25 @@
+{%  extends 'demoapp/home.html' %}
+{% load static %}
+{% block extra_js %}
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+{% endblock %}
+
+
+{% block content %}
+<div class="row">
+    <div class="col-md-2" style="padding: 2%;">
+        {%  include 'demoapp/button.html' %}
+    </div>
+    <br>
+    <br>
+</div>
+<div style="padding: 2%;">
+    <h5>Top Job Postings by Conversion Rate</h5>
+</div>
+    {{ conversion_graph|safe }}  <!-- Render the Plotly graph -->
+
+    <div style="padding: 2%;">
+    <h5>Average Time Until Expiry by Job Role</h5>
+    </div>
+    {{ time_graph|safe }}  <!-- Render the second Plotly graph -->
+{% endblock %}

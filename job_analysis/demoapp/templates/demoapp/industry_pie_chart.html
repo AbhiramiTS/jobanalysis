@@ -1,0 +1,28 @@
+{%  extends 'demoapp/home.html' %}
+{% load static %}
+{% block extra_js %}
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+{% endblock %}
+
+
+{% block content %}
+
+<div style="padding: 2%;">
+		<h5>Top 10 Highest Paying Industries:</h5>
+</div>
+		<div class="row">
+			<div class="col-md-2">
+				{%  include 'demoapp/button.html' %}
+			</div>
+			<br>
+			<br>
+		</div>
+		<div class="row">
+			<div class="col-md-5">
+				<div class="card card-body">
+						<img src="{% static '/images/top_industries_salary_chart.png' %}" alt="Top 10 Industries Pie Chart" class="img-fluid">
+				</div>
+			</div>
+		</div>
+	
+{% endblock %}
